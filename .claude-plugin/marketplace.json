@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-todo",
+  "description": "Claude Code todo skill plugin",
+  "owner": {
+    "name": "shshimamo"
+  },
+  "plugins": [
+    {
+      "name": "todo",
+      "description": "日々のTodo管理スキル。登録・完了・現状確認ができる。",
+      "source": "."
+    }
+  ]
+}
