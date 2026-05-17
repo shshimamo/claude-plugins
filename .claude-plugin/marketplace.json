@@ -9,7 +9,7 @@
     {
       "name": "todo",
       "description": "日々のTodo管理スキル。登録・完了・現状確認ができる。",
-      "source": "."
+      "source": "./plugins/todo"
     }
   ]
 }
