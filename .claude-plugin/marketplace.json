@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "claude-todo",
-  "description": "Claude Code todo skill plugin",
+  "name": "claude-plugins",
+  "description": "Claude Code plugins by shshimamo",
   "owner": {
     "name": "shshimamo"
   },
