@@ -10,6 +10,11 @@
       "name": "todo",
       "description": "日々のTodo管理スキル。登録・完了・現状確認ができる。",
       "source": "./plugins/todo"
+    },
+    {
+      "name": "review",
+      "description": "カスタムルールを加えたコードレビュースキル。プロジェクト固有・共通のレビュー観点をmdで管理し育てていける。",
+      "source": "./plugins/review"
     }
   ]
 }

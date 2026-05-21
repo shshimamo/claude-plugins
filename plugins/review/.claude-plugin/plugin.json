@@ -1,0 +1,7 @@
+{
+  "name": "review",
+  "description": "カスタムルールを加えたコードレビュースキル。プロジェクト固有・共通のレビュー観点をmdで管理し育てていける。",
+  "author": {
+    "name": "shshimamo"
+  }
+}
