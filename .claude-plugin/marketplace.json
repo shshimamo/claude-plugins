@@ -15,6 +15,11 @@
       "name": "review",
       "description": "カスタムルールを加えたコードレビュースキル。プロジェクト固有・共通のレビュー観点をmdで管理し育てていける。",
       "source": "./plugins/review"
+    },
+    {
+      "name": "prompt-insight",
+      "description": "プロンプトログを自動収集・分析し、繰り返しパターンをスキル化・CLAUDE.md化する提案を行う。",
+      "source": "./plugins/prompt-insight"
     }
   ]
 }
