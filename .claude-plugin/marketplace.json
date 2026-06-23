@@ -20,6 +20,11 @@
       "name": "prompt-insight",
       "description": "プロンプトログを自動収集・分析し、繰り返しパターンをスキル化・CLAUDE.md化する提案を行う。",
       "source": "./plugins/prompt-insight"
+    },
+    {
+      "name": "checkpoint",
+      "description": "セッションの作業状況をタスクごとにファイル保存し、次のセッションで再開できる。",
+      "source": "./plugins/checkpoint"
     }
   ]
 }

@@ -1,0 +1,7 @@
+{
+  "name": "checkpoint",
+  "description": "セッションの作業状況をタスクごとにファイル保存し、次のセッションで再開できる。",
+  "author": {
+    "name": "shshimamo"
+  }
+}

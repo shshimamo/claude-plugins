@@ -53,6 +53,23 @@ Claude Code plugins by shshimamo
 
 ---
 
+### checkpoint
+
+セッションの作業状況をタスクごとにファイル保存し、次のセッションで再開できる。セッションが途切れやすい環境で有効。
+
+```
+/plugin install checkpoint@shshimamo-plugins
+```
+
+| コマンド | 説明 |
+|---------|------|
+| `/checkpoint` | 現在の作業状況を保存 |
+| `/checkpoint resume` | 過去のチェックポイントから再開 |
+
+保存先: `~/.checkpoint/<task-name>/yyyymmddhhmm.md`
+
+---
+
 ### prompt-insight
 
 プロンプトログを自動収集・分析し、繰り返しパターンをスキル化・CLAUDE.md化する提案を行う。
