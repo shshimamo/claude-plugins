@@ -86,6 +86,35 @@ Claude Code plugins by shshimamo
 
 `UserPromptSubmit` フックを自動設定し、以降のプロンプトを `~/.prompt-insight/logs/` に記録する。
 
+手動でセットアップする場合:
+
+```bash
+# ログディレクトリ作成
+mkdir -p ~/.prompt-insight/logs
+
+# hook.sh をコピー（プラグインキャッシュのパスは適宜調整）
+cp ~/.claude/plugins/cache/shshimamo-plugins/prompt-insight/<hash>/hooks/prompt-logger.sh ~/.prompt-insight/hook.sh
+chmod +x ~/.prompt-insight/hook.sh
+```
+
+`~/.claude/settings.json`（または `settings.local.json`）に以下を追加:
+
+```json
+"hooks": {
+  "UserPromptSubmit": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash ~/.prompt-insight/hook.sh"
+        }
+      ]
+    }
+  ]
+}
+```
+
 | コマンド | 説明 |
 |---------|------|
 | `/prompt-insight setup` | フック設定・初期化 |
