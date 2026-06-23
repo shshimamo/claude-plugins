@@ -19,34 +19,20 @@ version: 1.0.0
 
 Bash で `mkdir -p ~/.prompt-insight/logs` を実行する。
 
-**2. フックスクリプト作成**
+**2. フックスクリプトのコピー**
 
-`~/.prompt-insight/hook.sh` を以下の内容で作成する:
+スキルのベースディレクトリから2階層上がったプラグインルートに `hooks/prompt-logger.sh` がある。
+これを `~/.prompt-insight/hook.sh` にコピーして実行権限を付与する:
 
 ~~~bash
-#!/bin/bash
-# Prompt Insight - UserPromptSubmit hook
-LOG_DIR="$HOME/.prompt-insight/logs"
-mkdir -p "$LOG_DIR"
-LOG_FILE="$LOG_DIR/$(date +%Y-%m-%d).jsonl"
-
-INPUT=$(cat)
-PROMPT=$(echo "$INPUT" | jq -r '.prompt // empty' 2>/dev/null)
-CWD=$(echo "$INPUT" | jq -r '.cwd // empty' 2>/dev/null)
-SESSION=$(echo "$INPUT" | jq -r '.session_id // empty' 2>/dev/null)
-
-if [ -n "$PROMPT" ]; then
-  ENTRY=$(jq -n \
-    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
-    --arg prompt "$PROMPT" \
-    --arg cwd "$CWD" \
-    --arg session "$SESSION" \
-    '{timestamp: $ts, prompt: $prompt, cwd: $cwd, session_id: $session}')
-  echo "$ENTRY" >> "$LOG_FILE"
-fi
+# ベースディレクトリ（例: ~/.claude/plugins/cache/shshimamo-plugins/prompt-insight/<hash>/skills/prompt-insight）
+# プラグインルートは2階層上
+PLUGIN_ROOT="$(dirname "$(dirname "$BASE_DIR")")"
+cp "$PLUGIN_ROOT/hooks/prompt-logger.sh" ~/.prompt-insight/hook.sh
+chmod +x ~/.prompt-insight/hook.sh
 ~~~
 
-作成後、`chmod +x ~/.prompt-insight/hook.sh` で実行権限を付与する。
+`$BASE_DIR` はスキル呼び出し時に提供されるベースディレクトリのパスを使うこと。
 
 **3. `~/.claude/settings.json` にフック追加**
 
