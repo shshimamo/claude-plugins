@@ -1,0 +1,7 @@
+{
+  "name": "repo-know",
+  "description": "会話からプロジェクトの技術・ドメイン知識を抽出して蓄積する。",
+  "author": {
+    "name": "shshimamo"
+  }
+}

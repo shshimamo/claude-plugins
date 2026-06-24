@@ -25,6 +25,11 @@
       "name": "checkpoint",
       "description": "セッションの作業状況をタスクごとにファイル保存し、次のセッションで再開できる。",
       "source": "./plugins/checkpoint"
+    },
+    {
+      "name": "repo-know",
+      "description": "会話からプロジェクトの技術・ドメイン知識を抽出して蓄積する。",
+      "source": "./plugins/repo-know"
     }
   ]
 }

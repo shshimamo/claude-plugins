@@ -70,6 +70,23 @@ Claude Code plugins by shshimamo
 
 ---
 
+### repo-know
+
+会話からプロジェクトの技術・ドメイン知識を抽出して蓄積する。セッションをまたいで知識を育てていける。
+
+```
+/plugin install repo-know@shshimamo-plugins
+```
+
+| コマンド | 説明 |
+|---------|------|
+| `/repo-know` | 会話から知識を抽出・保存 |
+| `/repo-know show` | 蓄積された知識を表示 |
+
+保存先: `~/.repo-know/<project-name>/`（tech.md / domain.md / decisions.md）
+
+---
+
 ### prompt-insight
 
 プロンプトログを自動収集・分析し、繰り返しパターンをスキル化・CLAUDE.md化する提案を行う。
