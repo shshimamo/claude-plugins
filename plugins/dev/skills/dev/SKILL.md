@@ -11,12 +11,15 @@ version: 1.0.0
 ```
 ~/.dev/<project>/
 └── <feature-name>/
-    ├── investigation.md   # 調査結果
-    ├── plan.md            # 実装計画・方針
-    ├── tasks.md           # タスクリスト（進捗管理）
+    ├── investigation/
+    │   ├── summary.md       # 全体サマリー・影響範囲
+    │   ├── architecture.md  # アーキテクチャの理解
+    │   └── <topic>.md       # テーマ別（auth, db, api など）
+    ├── plan.md              # 実装計画・方針
+    ├── tasks.md             # タスクリスト（進捗管理）
     └── artifacts/
-        ├── sequence.md    # シーケンス図（Mermaid）
-        └── db.md          # DB設計
+        ├── sequence.md      # シーケンス図（Mermaid）
+        └── db.md            # DB設計
 ```
 
 ---
@@ -57,10 +60,13 @@ version: 1.0.0
    - テストファイル
 4. **理解が深まるまで繰り返す**: 仕様の実装に必要な全体像が把握できるまで追跡を続ける
 
-**調査しながら随時 `investigation.md` に記録する:**
+**調査しながら随時 `investigation/` に記録する:**
 
+調査内容に応じてファイルを作成・追記する。最低限 `summary.md` は必ず作成する。
+
+`investigation/summary.md`:
 ~~~markdown
-# Investigation - <feature-name>
+# Investigation Summary - <feature-name>
 
 ## 仕様の理解
 （仕様を自分の言葉で整理したもの）
@@ -69,15 +75,25 @@ version: 1.0.0
 - `path/to/file.go`: （このファイルの役割）
 - `path/to/model.go`: （このファイルの役割）
 
-## アーキテクチャの理解
-（コードを読んで理解したアーキテクチャ・パターン）
-
 ## 影響範囲
 （変更が必要なファイルと理由）
 
 ## 不明点・リスク
 （実装時に注意すべき点、不確かな箇所）
 ~~~
+
+`investigation/architecture.md`（アーキテクチャが複雑な場合）:
+~~~markdown
+# Architecture - <feature-name>
+
+（コードを読んで理解したアーキテクチャ・レイヤー構造・パターン）
+~~~
+
+`investigation/<topic>.md`（テーマごとに必要に応じて作成）:
+- `auth.md`: 認証・認可の仕組み
+- `db.md`: DB構造・クエリパターン
+- `api.md`: APIエンドポイント・リクエスト/レスポンス形式
+- その他調査で発見したテーマに応じて自由に追加
 
 #### ステップ4: 計画の精緻化
 
@@ -176,7 +192,7 @@ sequenceDiagram
 #### ステップ3: タスクの実行
 
 ユーザーの確認後、タスクを実装する。
-実装時は `plan.md` と `investigation.md` を参照して一貫性を保つ。
+実装時は `plan.md` と `investigation/` のファイルを参照して一貫性を保つ。
 
 #### ステップ4: tasks.md の更新
 
