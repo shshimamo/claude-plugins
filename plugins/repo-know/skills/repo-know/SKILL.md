@@ -17,13 +17,7 @@ version: 1.0.0
 ~~~markdown
 # Tech Knowledge - <project-name>
 
-## YYYY-MM-DD
-
 - <知識>
-- <知識>
-
-## YYYY-MM-DD
-
 - <知識>
 ~~~
 
@@ -88,6 +82,7 @@ version: 1.0.0
 
 `~/.repo-know/<project-name>/` ディレクトリを作成し、選択された項目を該当ファイルに追記する。
 
+既存の箇条書きリストの末尾に追記する（日付セクションは作らない）。
 追記後に保存内容を表示して完了を報告する。
 
 ---
