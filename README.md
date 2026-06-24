@@ -70,6 +70,30 @@ Claude Code plugins by shshimamo
 
 ---
 
+### dev
+
+仕様をもとにコードを調査・計画・実行する開発スキル。計画と実行の2コマンド構成。
+
+```
+/plugin install dev@shshimamo-plugins
+```
+
+| コマンド | 説明 |
+|---------|------|
+| `/dev plan <仕様>` | コード調査・計画立案・アウトプット生成 |
+| `/dev exec` | 計画に従って実装を実行 |
+
+**`/dev plan` の流れ:**
+1. タスク種別を判断（new / feature / bugfix / refactor）
+2. 既存コードを調査（Grep + 参照追跡で芋づる式に理解）
+3. 調査結果を `investigation.md` に記録
+4. 仕様と調査結果をもとに計画を精緻化
+5. スコープに応じてシーケンス図・DB設計・タスクリストを生成
+
+保存先: `~/.dev/<project-name>/<feature-name>/`
+
+---
+
 ### repo-know
 
 会話からプロジェクトの技術・ドメイン知識を抽出して蓄積する。セッションをまたいで知識を育てていける。
