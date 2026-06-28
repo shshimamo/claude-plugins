@@ -26,20 +26,11 @@ version: 1.0.0
 
 ### 4. 追加ルールファイルの読み込み
 
-以下の2ファイルを読み込む。存在しない場合は空として扱う（エラーにしない）:
+以下のファイルを読み込む:
 
-- `~/.review/common.md` — 全プロジェクト共通のレビュー観点
-- `~/.review/<project-name>.md` — このプロジェクト固有のレビュー観点
-
-ファイルが存在しない場合は新規作成する（中身は空）:
-
-```
-# Common Review Rules
-```
-
-```
-# <project-name> Review Rules
-```
+- `~/.review/common.md` — 全プロジェクト共通のレビュー観点（存在しない場合は `# Common Review Rules` の内容で新規作成）
+- `~/.review/<project-name>.md` — このプロジェクト固有のレビュー観点（存在しない場合は `# <project-name> Review Rules` の内容で新規作成）
+- `.claude/skill-evolve/review-patterns.md` — skill-evolve が週次自動生成するパターン（存在しない場合はスキップ）
 
 ### 5. 変更内容の取得
 
@@ -62,7 +53,7 @@ version: 1.0.0
 
 ### 追加レビュー観点
 
-読み込んだ `common.md` と `<project-name>.md` の内容をレビュー観点として加える。
+読み込んだ `common.md`・`<project-name>.md`・`review-patterns.md` の内容をレビュー観点として加える。
 ファイルが空または存在しない場合はスキップする。
 
 ## 出力フォーマット

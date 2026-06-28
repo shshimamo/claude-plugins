@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+"""
+Case 2: ~/.investigate/ の調査ファイルを分析し、
+繰り返し「未解決」になっている不明点パターンを抽出する
+
+ローカルの cron から実行される（local_evolve.sh 経由）。
+investigate_bug スキルが生成した summary.md を読み取り、
+「不明点・リスク」テーブルの未解決行を集計する。
+
+出力:
+  .claude/skill-evolve/investigate-patterns.json
+  → improve_local_skills.py が読み込んで SKILL.md を改善する
+"""
+import json
+from pathlib import Path
+
+investigate_root = Path.home() / '.investigate'
+
+if not investigate_root.exists():
+    print("~/.investigate/ not found. No data to analyze.")
+    exit(0)
+
+unresolved = []
+
+# ~/.investigate/<project>/<investigation-name>/investigation/summary.md を全件スキャン
+for summary_path in investigate_root.glob('*/*/investigation/summary.md'):
+    content = summary_path.read_text(encoding='utf-8')
+
+    # パスの構造: ~/.investigate/<project>/<investigation>/investigation/summary.md
+    project = summary_path.parts[-4]
+    investigation = summary_path.parts[-3]
+
+    # summary.md の「不明点・リスク」テーブルから「未解決」の行を抽出
+    # テーブル形式: | # | 内容 | 影響 | 状態 |
+    in_table = False
+    for line in content.splitlines():
+        # 「不明点」または「リスク」という見出しが出たらテーブル開始と判断
+        if '不明点' in line or 'リスク' in line:
+            in_table = True
+        if in_table and '|' in line and '未解決' in line:
+            cells = [c.strip() for c in line.split('|') if c.strip()]
+            if len(cells) >= 3:
+                unresolved.append({
+                    'project': project,
+                    'investigation': investigation,
+                    'content': cells[1] if len(cells) > 1 else cells[0],
+                    'impact': cells[2] if len(cells) > 2 else '',
+                })
+
+output = {
+    'total_unresolved': len(unresolved),
+    'items': unresolved,
+}
+
+out_path = Path('.claude/skill-evolve/investigate-patterns.json')
+out_path.parent.mkdir(parents=True, exist_ok=True)
+out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2))
+
+print(f"Found {len(unresolved)} unresolved items across {investigate_root}")
+print(f"Saved to {out_path}")

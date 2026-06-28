@@ -1,0 +1,88 @@
+name: Skill Evolve
+
+# ======================================================================
+# Reusable Workflow: 他リポジトリから呼び出して使う
+#
+# 使い方（呼び出し側リポジトリの .github/workflows/skill-evolve.yml）:
+#
+#   on:
+#     schedule:
+#       - cron: '0 1 * * 1'  # 毎週月曜 1:00 UTC
+#     workflow_dispatch:
+#   jobs:
+#     evolve:
+#       uses: shshimamo/claude-plugins/.github/workflows/skill-evolve.yml@main
+#       secrets:
+#         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+#
+# 必要な GitHub Secrets:
+#   ANTHROPIC_API_KEY  - Anthropic の API キー（Settings → Secrets → Actions）
+# ======================================================================
+
+on:
+  workflow_call:
+    inputs:
+      weeks_back:
+        description: '何週間分のPRコメントを収集するか（デフォルト: 1週間）'
+        type: number
+        default: 1
+    secrets:
+      ANTHROPIC_API_KEY:
+        required: true
+
+jobs:
+  collect-and-improve:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write      # review-patterns.md を commit するために必要
+      pull-requests: read  # PR コメントを読み取るために必要
+
+    steps:
+      # 呼び出し元リポジトリ（あなたのプロジェクト）をチェックアウト
+      - name: Checkout project repo
+        uses: actions/checkout@v4
+
+      # claude-plugins リポジトリからスクリプトを取得
+      # .claude-plugins/ というディレクトリにチェックアウトする
+      - name: Checkout claude-plugins (scripts)
+        uses: actions/checkout@v4
+        with:
+          repository: shshimamo/claude-plugins
+          path: .claude-plugins
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Claude API を呼び出すための Python ライブラリをインストール
+      - name: Install dependencies
+        run: pip install anthropic
+
+      # Step 1: 過去N週間の PR レビューコメントを収集して JSON に保存
+      # 出力: .claude/skill-evolve/raw-comments.json
+      - name: Collect PR review comments
+        run: python .claude-plugins/plugins/skill-evolve/scripts/github-actions/collect_review_comments.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub が自動で提供するトークン
+          REPO: ${{ github.repository }}          # 例: myorg/my-app
+          WEEKS_BACK: ${{ inputs.weeks_back }}
+
+      # Step 2: 収集したコメントを Claude で分析してパターンを抽出
+      # 出力: .claude/skill-evolve/review-patterns.md（review-custom スキルが読み込む）
+      - name: Improve review patterns
+        run: python .claude-plugins/plugins/skill-evolve/scripts/github-actions/improve_review_patterns.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # Step 3: 変更があれば review-patterns.md を自動 commit
+      # "[skip ci]" を付けることでこの commit が再度 CI を起動しないようにする
+      - name: Commit and push
+        run: |
+          git config user.name "skill-evolve[bot]"
+          git config user.email "skill-evolve-bot@users.noreply.github.com"
+          git add .claude/skill-evolve/review-patterns.md
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "skill-evolve: update review patterns [skip ci]"
+          git push
