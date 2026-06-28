@@ -1,0 +1,41 @@
+{
+  "skill_name": "dev",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "以下の仕様で /dev plan を実行してください。\n\n仕様: このリポジトリ（claude-plugins）に新機能として「ユーザーフィードバック収集機能」を追加したい。プラグインを使った後にユーザーが簡単にフィードバックを送れるようにする。\n\nヒアリングで聞かれたら以下の情報で回答してください:\n- 仕様: 上記の通り\n- 関連リポジトリ: カレントリポジトリのみ (/Users/shshimamo/devel/src/github.com/shshimamo/claude-plugins)\n- 参考文献: なし\n- フィーチャー名候補が提案されたら「feedback-collection」で承認\n- タスク種別は「new」\n\n出力ファイルは ~/.dev/claude-plugins/feedback-collection/ に保存してください。全ステップを完了させてください（investigation, plan.md, tasks.md, artifactsまで）。",
+      "expected_output": "investigation/summary.md、plan.md、tasks.md（依存列あり）、artifacts/sequence.md が生成される",
+      "assertions": [
+        {"name": "investigation_summary_exists", "description": "investigation/summary.md が生成されること"},
+        {"name": "summary_has_risk_table", "description": "summary.md に「不明点・リスク」テーブルが含まれること"},
+        {"name": "plan_has_traceability", "description": "plan.md にトレーサビリティ表（| 要件 | コンポーネント |）が含まれること"},
+        {"name": "tasks_has_dependency_col", "description": "tasks.md のタスクテーブルに「依存」列があること"},
+        {"name": "sequence_diagram_exists", "description": "artifacts/sequence.md が生成されること（new 種別）"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "以下の仕様で /dev plan を実行してください。\n\n仕様: devスキルの /dev exec を実行したとき、tasks.mdが存在しない場合にエラーメッセージが不明瞭でユーザーが混乱するバグを修正したい。\n\nヒアリングで聞かれたら以下の情報で回答してください:\n- 仕様: 上記の通り\n- 関連リポジトリ: カレントリポジトリのみ (/Users/shshimamo/devel/src/github.com/shshimamo/claude-plugins)\n- 参考文献: なし\n- フィーチャー名候補が提案されたら「fix-exec-error-msg」で承認\n- タスク種別は「bugfix」\n\n出力ファイルは ~/.dev/claude-plugins/fix-exec-error-msg/ に保存してください。全ステップを完了させてください（investigation, plan.md, tasks.mdまで）。",
+      "expected_output": "bugfix フローが選ばれ、investigation/summary.md（不明点・リスクテーブルあり）、plan.md、tasks.md が生成される",
+      "assertions": [
+        {"name": "investigation_summary_exists", "description": "investigation/summary.md が生成されること"},
+        {"name": "summary_has_risk_table", "description": "summary.md に「不明点・リスク」テーブルが含まれること"},
+        {"name": "plan_exists", "description": "plan.md が生成されること"},
+        {"name": "tasks_has_dependency_col", "description": "tasks.md のタスクテーブルに「依存」列があること"},
+        {"name": "no_sequence_diagram", "description": "bugfix 種別のため artifacts/sequence.md は生成不要（または存在しない）"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "以下の仕様で /dev plan を実行してください。\n\n仕様: devスキルに「/dev review」コマンドを追加したい。実装したコードをAIがレビューし、問題点・改善提案をまとめるコマンド。\n\nヒアリングで聞かれたら以下の情報で回答してください:\n- 仕様: 上記の通り\n- 関連リポジトリ: カレントリポジトリのみ (/Users/shshimamo/devel/src/github.com/shshimamo/claude-plugins)\n- 参考文献: なし\n- フィーチャー名候補が提案されたら「dev-review-cmd」で承認\n- タスク種別は「feature」\n\n出力ファイルは ~/.dev/claude-plugins/dev-review-cmd/ に保存してください。全ステップを完了させてください（investigation, plan.md, tasks.md, artifacts/sequence.mdまで）。",
+      "expected_output": "feature フローが選ばれ、investigation/summary.md、plan.md、tasks.md（依存列あり）、artifacts/sequence.md が生成される",
+      "assertions": [
+        {"name": "investigation_summary_exists", "description": "investigation/summary.md が生成されること"},
+        {"name": "plan_has_traceability", "description": "plan.md にトレーサビリティ表（| 要件 | コンポーネント |）が含まれること"},
+        {"name": "plan_has_implementation_policy", "description": "plan.md に「実装方針」セクションが含まれること"},
+        {"name": "tasks_has_dependency_col", "description": "tasks.md のタスクテーブルに「依存」列があること"},
+        {"name": "sequence_diagram_exists", "description": "artifacts/sequence.md が生成されること（feature 種別）"}
+      ]
+    }
+  ]
+}

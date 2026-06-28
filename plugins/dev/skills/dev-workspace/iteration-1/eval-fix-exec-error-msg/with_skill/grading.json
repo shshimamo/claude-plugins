@@ -1,0 +1,31 @@
+{
+  "eval_id": 2,
+  "run_type": "with_skill",
+  "expectations": [
+    {
+      "text": "investigation/summary.md が生成されること",
+      "passed": true,
+      "evidence": "investigation/summary.md が存在する。バグの根本原因・関連ファイル・影響範囲・不明点リスクのセクションを含む"
+    },
+    {
+      "text": "summary.md に「不明点・リスク」テーブルが含まれること",
+      "passed": true,
+      "evidence": "| # | 内容 | 影響 | 状態 | 形式のテーブルが存在し、2件のリスクが記載されている"
+    },
+    {
+      "text": "plan.md が生成されること",
+      "passed": true,
+      "evidence": "plan.md が存在する。概要・修正方針・影響範囲・修正内容・考慮事項のセクションを含む"
+    },
+    {
+      "text": "tasks.md のタスクテーブルに「依存」列があること",
+      "passed": true,
+      "evidence": "tasks.md に | # | タスク名 | 状態 | 対象ファイル | 実装詳細 | 依存 | の6列テーブルが存在する"
+    },
+    {
+      "text": "bugfix 種別のため artifacts/sequence.md は生成不要",
+      "passed": true,
+      "evidence": "artifacts/sequence.md が存在しない。bugfix 種別として適切に判断されている"
+    }
+  ]
+}

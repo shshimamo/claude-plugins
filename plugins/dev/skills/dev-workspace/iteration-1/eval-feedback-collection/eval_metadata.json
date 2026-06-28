@@ -1,0 +1,6 @@
+{
+  "eval_id": 1,
+  "eval_name": "feedback-collection-new-feature",
+  "prompt": "以下の仕様で /dev plan を実行してください。\n\n仕様: このリポジトリ（claude-plugins）に新機能として「ユーザーフィードバック収集機能」を追加したい。プラグインを使った後にユーザーが簡単にフィードバックを送れるようにする。\n\nヒアリングで聞かれたら以下の情報で回答してください:\n- 仕様: 上記の通り\n- 関連リポジトリ: カレントリポジトリのみ\n- 参考文献: なし\n- フィーチャー名は「feedback-collection」\n- タスク種別は「new」\n\n出力ファイルは ~/.dev/claude-plugins/feedback-collection/ に保存してください。",
+  "assertions": []
+}

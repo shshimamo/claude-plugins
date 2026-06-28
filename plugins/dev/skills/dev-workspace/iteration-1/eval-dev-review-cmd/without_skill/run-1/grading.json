@@ -1,0 +1,37 @@
+{
+  "eval_id": 3,
+  "run_type": "without_skill",
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  },
+  "expectations": [
+    {
+      "text": "investigation/summary.md が生成されること",
+      "passed": true,
+      "evidence": "investigation/summary.md が存在する。仕様理解・関連ファイル・影響範囲・不明点リスクのセクションを含む"
+    },
+    {
+      "text": "plan.md にトレーサビリティ表（| 要件 | コンポーネント |）が含まれること",
+      "passed": true,
+      "evidence": "plan.md に「## トレーサビリティ」セクションがあり | 要件 | コンポーネント | API | データ | の4列テーブルが存在する"
+    },
+    {
+      "text": "plan.md に「実装方針」セクションが含まれること",
+      "passed": true,
+      "evidence": "plan.md に「## 実装方針」セクションが存在する（reviewフローの詳細ステップを含む）"
+    },
+    {
+      "text": "tasks.md のタスクテーブルに「依存」列があること",
+      "passed": true,
+      "evidence": "tasks.md に | # | タスク名 | 状態 | 対象ファイル | 実装詳細 | 依存 | の6列テーブルが存在する"
+    },
+    {
+      "text": "artifacts/sequence.md が生成されること（feature 種別）",
+      "passed": true,
+      "evidence": "artifacts/sequence.md が存在する"
+    }
+  ]
+}

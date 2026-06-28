@@ -1,0 +1,6 @@
+{
+  "eval_id": 2,
+  "eval_name": "fix-exec-error-msg-bugfix",
+  "prompt": "以下の仕様で /dev plan を実行してください。\n\n仕様: devスキルの /dev exec を実行したとき、tasks.mdが存在しない場合にエラーメッセージが不明瞭でユーザーが混乱するバグを修正したい。\n\nヒアリングで聞かれたら以下の情報で回答してください:\n- 仕様: 上記の通り\n- 関連リポジトリ: カレントリポジトリのみ\n- 参考文献: なし\n- フィーチャー名は「fix-exec-error-msg」\n- タスク種別は「bugfix」\n\n出力ファイルは ~/.dev/claude-plugins/fix-exec-error-msg/ に保存してください。",
+  "assertions": []
+}

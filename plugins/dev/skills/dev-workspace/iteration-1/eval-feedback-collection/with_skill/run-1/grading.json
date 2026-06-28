@@ -1,0 +1,37 @@
+{
+  "eval_id": 1,
+  "run_type": "with_skill",
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  },
+  "expectations": [
+    {
+      "text": "investigation/summary.md が生成されること",
+      "passed": true,
+      "evidence": "investigation/summary.md が存在する。仕様理解・関連ファイル・影響範囲・不明点リスクの全セクションを含む"
+    },
+    {
+      "text": "summary.md に「不明点・リスク」テーブルが含まれること",
+      "passed": true,
+      "evidence": "| # | 内容 | 影響 | 状態 | 形式のテーブルが存在し、4件のリスクが記載されている"
+    },
+    {
+      "text": "plan.md にトレーサビリティ表（| 要件 | コンポーネント |）が含まれること",
+      "passed": true,
+      "evidence": "plan.md に「## トレーサビリティ」セクションがあり | 要件 | コンポーネント | API | データ | の4列テーブルが存在する"
+    },
+    {
+      "text": "tasks.md のタスクテーブルに「依存」列があること",
+      "passed": true,
+      "evidence": "tasks.md に | # | タスク名 | 状態 | 対象ファイル | 実装詳細 | 依存 | の6列テーブルが存在する"
+    },
+    {
+      "text": "artifacts/sequence.md が生成されること（new 種別）",
+      "passed": true,
+      "evidence": "artifacts/sequence.md が存在する。Mermaid sequenceDiagram 形式でフィードバック送信フローを図示"
+    }
+  ]
+}

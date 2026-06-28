@@ -1,0 +1,6 @@
+{
+  "eval_id": 3,
+  "eval_name": "dev-review-cmd-feature",
+  "prompt": "以下の仕様で /dev plan を実行してください。\n\n仕様: devスキルに「/dev review」コマンドを追加したい。実装したコードをAIがレビューし、問題点・改善提案をまとめるコマンド。\n\nヒアリングで聞かれたら以下の情報で回答してください:\n- 仕様: 上記の通り\n- 関連リポジトリ: カレントリポジトリのみ\n- 参考文献: なし\n- フィーチャー名は「dev-review-cmd」\n- タスク種別は「feature」\n\n出力ファイルは ~/.dev/claude-plugins/dev-review-cmd/ に保存してください。",
+  "assertions": []
+}
