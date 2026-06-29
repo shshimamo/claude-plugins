@@ -35,6 +35,16 @@
       "name": "dev",
       "description": "仕様をもとにコードを調査・計画・実行する開発スキル。計画フェーズと実行フェーズの2コマンド構成。",
       "source": "./plugins/dev"
+    },
+    {
+      "name": "investigate",
+      "description": "コードベースを調査するスキル。バグ調査（根本原因+修正案）とコードリーディング（構造・シーケンス・データフロー）の2コマンド構成。",
+      "source": "./plugins/investigate"
+    },
+    {
+      "name": "skill-evolve",
+      "description": "調査ログや開発ログを集計して investigate_bug・dev スキルを自動改善する。/skill-evolve コマンドで任意のタイミングに実行。",
+      "source": "./plugins/skill-evolve"
     }
   ]
 }
