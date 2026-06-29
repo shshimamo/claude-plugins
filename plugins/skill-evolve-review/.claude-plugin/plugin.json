@@ -1,0 +1,5 @@
+{
+  "name": "skill-evolve-review",
+  "description": "GitHub Actions で PR レビューコメントを週次集計し、review-custom スキルを自動改善する仕組み。",
+  "author": { "name": "shshimamo" }
+}

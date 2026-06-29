@@ -63,7 +63,7 @@ jobs:
       # Step 1: 過去N週間の PR レビューコメントを収集して JSON に保存
       # 出力: .claude/skill-evolve/raw-comments.json
       - name: Collect PR review comments
-        run: python .claude-plugins/plugins/skill-evolve/scripts/github-actions/collect_review_comments.py
+        run: python .claude-plugins/plugins/skill-evolve-review/scripts/collect_review_comments.py
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub が自動で提供するトークン
           REPO: ${{ github.repository }}          # 例: myorg/my-app
@@ -72,7 +72,7 @@ jobs:
       # Step 2: 収集したコメントを Claude で分析してパターンを抽出
       # 出力: .claude/skill-evolve/review-patterns.md（review-custom スキルが読み込む）
       - name: Improve review patterns
-        run: python .claude-plugins/plugins/skill-evolve/scripts/github-actions/improve_review_patterns.py
+        run: python .claude-plugins/plugins/skill-evolve-review/scripts/improve_review_patterns.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 

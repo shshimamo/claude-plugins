@@ -1,6 +1,6 @@
 {
   "name": "skill-evolve",
-  "description": "PRレビューコメント・調査ログを定期集計してスキルを自動改善する仕組み。GitHub ActionsのReusable Workflowとローカルcronスクリプトを提供する。",
+  "description": "調査ログや開発ログを集計して investigate_bug・dev スキルを自動改善する。/skill-evolve コマンドで任意のタイミングに実行。",
   "author": {
     "name": "shshimamo"
   }
