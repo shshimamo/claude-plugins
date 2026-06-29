@@ -6,3 +6,4 @@
 .claude/claude-plugins/skill-evolve/investigate-patterns.json
 .claude/claude-plugins/skill-evolve/cross-skill-patterns.json
 .claude/claude-plugins/skill-evolve/prompt-patterns.json
+.claude/claude-plugins/skill-evolve/investigate-code-patterns.json
