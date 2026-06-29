@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
 """
-Case 3: ~/.investigate/ と ~/.dev/ を横断して
+Case 3: ~/.investigate/bug/ と ~/.dev/ を横断して
 「各スキルで何が足りなかったか」のパターンを集計する
 
-ローカルの cron から実行される（local_evolve.sh 経由）。
 複数スキルのデータを合わせて分析することで、
 単一スキルでは気づけないパターンを発見することが目的。
 
 出力:
-  .claude/skill-evolve/cross-skill-patterns.json
-  → improve_local_skills.py が読み込んで dev スキルを改善する
+  .claude/claude-plugins/skill-evolve/cross-skill-patterns.json
 """
 import json
 from pathlib import Path
 
-investigate_root = Path.home() / '.investigate'
+investigate_root = Path.home() / '.investigate' / 'bug'
 dev_root = Path.home() / '.dev'
 
 patterns = {
@@ -53,14 +51,13 @@ if dev_root.exists():
         content = tasks_path.read_text(encoding='utf-8')
         project = tasks_path.parent.name
         for line in content.splitlines():
-            # タスクテーブルで「保留」「ブロック」「blocked」の行を抽出
             if '|' in line and ('保留' in line or 'ブロック' in line or 'blocked' in line.lower()):
                 cells = [c.strip() for c in line.split('|') if c.strip()]
                 if cells:
                     stalled.append({'project': project, 'task': cells[0]})
     patterns['dev']['stalled_tasks'] = stalled
 
-out_path = Path('.claude/skill-evolve/cross-skill-patterns.json')
+out_path = Path('.claude/claude-plugins/skill-evolve/cross-skill-patterns.json')
 out_path.parent.mkdir(parents=True, exist_ok=True)
 out_path.write_text(json.dumps(patterns, ensure_ascii=False, indent=2))
 

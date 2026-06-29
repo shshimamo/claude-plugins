@@ -6,10 +6,10 @@ version: 1.0.0
 
 # Investigate Code スキル
 
-保存先: `~/.investigate/<project-name>/<investigation-name>/`
+保存先: `~/.investigate/code/<project-name>/<investigation-name>/`
 
 ```
-~/.investigate/<project>/
+~/.investigate/code/<project>/
 └── <investigation-name>/
     ├── investigation/
     │   └── summary.md        # 調査サマリー・関連ファイル・全体像

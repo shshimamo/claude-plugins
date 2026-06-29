@@ -6,10 +6,10 @@ version: 1.0.0
 
 # Investigate Bug スキル
 
-保存先: `~/.investigate/<project-name>/<investigation-name>/`
+保存先: `~/.investigate/bug/<project-name>/<investigation-name>/`
 
 ```
-~/.investigate/<project>/
+~/.investigate/bug/<project>/
 └── <investigation-name>/
     ├── investigation/
     │   └── summary.md        # 調査サマリー・関連ファイル・リスク

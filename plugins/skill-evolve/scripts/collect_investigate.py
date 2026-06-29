@@ -1,32 +1,30 @@
 #!/usr/bin/env python3
 """
-Case 2: ~/.investigate/ の調査ファイルを分析し、
+Case 2: ~/.investigate/bug/ の調査ファイルを分析し、
 繰り返し「未解決」になっている不明点パターンを抽出する
 
-ローカルの cron から実行される（local_evolve.sh 経由）。
 investigate_bug スキルが生成した summary.md を読み取り、
 「不明点・リスク」テーブルの未解決行を集計する。
 
 出力:
-  .claude/skill-evolve/investigate-patterns.json
-  → improve_local_skills.py が読み込んで SKILL.md を改善する
+  .claude/claude-plugins/skill-evolve/investigate-patterns.json
 """
 import json
 from pathlib import Path
 
-investigate_root = Path.home() / '.investigate'
+investigate_root = Path.home() / '.investigate' / 'bug'
 
 if not investigate_root.exists():
-    print("~/.investigate/ not found. No data to analyze.")
+    print("~/.investigate/bug/ not found. No data to analyze.")
     exit(0)
 
 unresolved = []
 
-# ~/.investigate/<project>/<investigation-name>/investigation/summary.md を全件スキャン
+# ~/.investigate/bug/<project>/<investigation-name>/investigation/summary.md を全件スキャン
 for summary_path in investigate_root.glob('*/*/investigation/summary.md'):
     content = summary_path.read_text(encoding='utf-8')
 
-    # パスの構造: ~/.investigate/<project>/<investigation>/investigation/summary.md
+    # パスの構造: ~/.investigate/bug/<project>/<investigation>/investigation/summary.md
     project = summary_path.parts[-4]
     investigation = summary_path.parts[-3]
 
@@ -34,7 +32,6 @@ for summary_path in investigate_root.glob('*/*/investigation/summary.md'):
     # テーブル形式: | # | 内容 | 影響 | 状態 |
     in_table = False
     for line in content.splitlines():
-        # 「不明点」または「リスク」という見出しが出たらテーブル開始と判断
         if '不明点' in line or 'リスク' in line:
             in_table = True
         if in_table and '|' in line and '未解決' in line:
@@ -52,7 +49,7 @@ output = {
     'items': unresolved,
 }
 
-out_path = Path('.claude/skill-evolve/investigate-patterns.json')
+out_path = Path('.claude/claude-plugins/skill-evolve/investigate-patterns.json')
 out_path.parent.mkdir(parents=True, exist_ok=True)
 out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2))
 
