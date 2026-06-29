@@ -33,18 +33,21 @@ version: 1.0.0
 
 ---
 
-## ステップ0: スキル拡張ファイルと repo-know を読み込む
+## ステップ0: 対象リポジトリの確認とコンテキスト読み込み
 
-プロジェクト名を `git remote get-url origin` から取得し、以下のパスにスキル拡張ファイルが存在するか確認する:
+`git remote get-url origin`（失敗した場合は `basename $(pwd)`）でプロジェクト名を自動取得し、ユーザーに確認する:
 
-```
-~/.claude/claude-plugins/skill-evolve/skill-extensions/<project>/investigate_code.local.md
-```
+> 対象リポジトリ: `<自動取得したプロジェクト名>`
+> このリポジトリで合っていますか？（違う場合は正しい名前を教えてください）
 
-存在する場合は内容を読み込み、以降のステップで追加コンテキストとして活用する（調査の優先順位・注意点・既知のドメイン知識など）。
+確定したプロジェクト名を以降のすべての操作（調査ログの保存先・skill-extensions・repo-know の読み書き）で使う。
 
-また、`~/.repo-know/<project-name>/` の各ファイルも読み込む（存在しない場合はスキップ）。
-読み込んだ内容を調査のコンテキストとして活用する（既知のアーキテクチャ・ドメイン知識・設計判断など）。
+プロジェクト名が確定したら以下を読み込む（存在しない場合はスキップ）:
+
+- `~/.claude/claude-plugins/skill-evolve/skill-extensions/<project>/investigate_code.local.md`（調査の優先順位・注意点）
+- `~/.repo-know/<project>/` の各ファイル（アーキテクチャ・ドメイン知識・設計判断）
+
+読み込んだ内容を以降のステップで追加コンテキストとして活用する。
 
 ---
 
