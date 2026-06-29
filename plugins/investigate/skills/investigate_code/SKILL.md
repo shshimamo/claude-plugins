@@ -44,7 +44,7 @@ version: 1.0.0
 
 プロジェクト名が確定したら以下を読み込む（存在しない場合はスキップ）:
 
-- `~/.claude/claude-plugins/skill-evolve/skill-extensions/<project>/investigate_code.local.md`（調査の優先順位・注意点）
+- `~/.skill-evolve/skill-extensions/<project>/investigate_code.local.md`（調査の優先順位・注意点）
 - `~/.repo-know/<project>/` の各ファイル（アーキテクチャ・ドメイン知識・設計判断）
 
 読み込んだ内容を以降のステップで追加コンテキストとして活用する。
