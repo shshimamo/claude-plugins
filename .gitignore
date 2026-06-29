@@ -1,2 +1,8 @@
-# ローカル環境独自の skill-evolve 拡張設定（各環境でカスタマイズ）
-.claude/skill-evolve/skill-evolve.local.md
+# ローカル環境独自の skill-evolve 設定（各環境でカスタマイズ）
+.claude/claude-plugins/skill-evolve/skill-evolve.local.md
+.claude/claude-plugins/skill-evolve/skill-extensions/
+
+# 中間ファイル（実行時に生成）
+.claude/claude-plugins/skill-evolve/investigate-patterns.json
+.claude/claude-plugins/skill-evolve/cross-skill-patterns.json
+.claude/claude-plugins/skill-evolve/prompt-patterns.json
