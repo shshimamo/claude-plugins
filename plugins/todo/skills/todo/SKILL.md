@@ -6,7 +6,7 @@ version: 2.0.0
 
 # Todo管理スキル
 
-Todoファイル: `~/.todo/todos.md`
+Todoファイル: `~/.claude-plugins/todo/todos.md`
 
 まず必ずこのファイルを読んでから処理する。
 

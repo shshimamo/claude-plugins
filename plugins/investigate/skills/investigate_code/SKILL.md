@@ -10,7 +10,6 @@ version: 1.0.0
 
 ```
 ~/.claude-plugins/investigate/code/<project>/
-├── domain-knowledge.md           # プロジェクト固有のドメイン知識（自動更新）
 └── <investigation-name>/
     ├── investigation/
     │   └── summary.md        # 調査サマリー・関連ファイル・全体像

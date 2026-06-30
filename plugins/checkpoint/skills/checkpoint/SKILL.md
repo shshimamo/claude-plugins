@@ -6,14 +6,14 @@ version: 1.0.0
 
 # Checkpoint スキル
 
-保存先: `~/.checkpoint/`
-タスク管理ファイル: `~/.checkpoint/tasks.md`
-チェックポイントファイル: `~/.checkpoint/<task-name>/yyyymmddhhmm.md`
+保存先: `~/.claude-plugins/checkpoint/`
+タスク管理ファイル: `~/.claude-plugins/checkpoint/tasks.md`
+チェックポイントファイル: `~/.claude-plugins/checkpoint/<task-name>/yyyymmddhhmm.md`
 
 ## ディレクトリ構造
 
 ~~~
-~/.checkpoint/
+~/.claude-plugins/checkpoint/
 ├── tasks.md          # タスク一覧（INDEX）
 ├── ecsite/
 │   ├── 202606231430.md
@@ -63,7 +63,7 @@ version: 1.0.0
 
 **ステップ1: タスク一覧の読み込み**
 
-`~/.checkpoint/tasks.md` を読み込む。
+`~/.claude-plugins/checkpoint/tasks.md` を読み込む。
 存在しない場合はタスクなし（新規作成）として扱う。
 
 **ステップ2: 現在の作業からタスクを自動判断**
@@ -89,12 +89,12 @@ version: 1.0.0
 **ステップ4: チェックポイントファイルの生成・保存**
 
 1. タイムスタンプを取得: `date +%Y%m%d%H%M`
-2. `~/.checkpoint/<task-name>/` ディレクトリを作成
-3. 上記フォーマットでチェックポイントの内容を生成し、`~/.checkpoint/<task-name>/yyyymmddhhmm.md` に保存
+2. `~/.claude-plugins/checkpoint/<task-name>/` ディレクトリを作成
+3. 上記フォーマットでチェックポイントの内容を生成し、`~/.claude-plugins/checkpoint/<task-name>/yyyymmddhhmm.md` に保存
 
 **ステップ5: tasks.md の更新**
 
-新規タスクの場合、`~/.checkpoint/tasks.md` にエントリを追加する。
+新規タスクの場合、`~/.claude-plugins/checkpoint/tasks.md` にエントリを追加する。
 既存タスクの場合はそのまま。
 
 **ステップ6: 完了報告**
@@ -107,7 +107,7 @@ version: 1.0.0
 
 **ステップ1: タスク一覧の表示**
 
-`~/.checkpoint/tasks.md` を読み込んで一覧表示する。
+`~/.claude-plugins/checkpoint/tasks.md` を読み込んで一覧表示する。
 ファイルが存在しない・タスクがない場合は「チェックポイントがまだありません。`/checkpoint` で保存してください。」と伝えて終了。
 
 各タスクの最終チェックポイント日時も表示する:

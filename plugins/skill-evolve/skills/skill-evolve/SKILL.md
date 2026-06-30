@@ -159,7 +159,7 @@ git commit -m "skill-evolve: auto-improve skills [$(date +%Y-%m-%d)]"
 ```
 
 **ローカルのみの変更**（investigate_code のスキル拡張ファイル）:
-`~/.claude/claude-plugins/skill-evolve/skill-extensions/` は gitignore 済みのためコミット不要。更新完了を伝えるだけ。
+`~/.claude-plugins/skill-evolve/skill-extensions/` は gitignore 済みのためコミット不要。更新完了を伝えるだけ。
 
 変更がなければ「改善すべきパターンが見つかりませんでした」と伝えて終了。
 
