@@ -64,19 +64,27 @@ echo '{"hooks":{"UserPromptSubmit":[{"matcher":"","hooks":[{"type":"command","co
 cat ~/.claude/settings.json
 ```
 
-`hooks.UserPromptSubmit` に以下のエントリが含まれていれば設定完了:
+`~/.claude/settings.json` が以下のような内容になっていれば設定完了:
 
 ```json
 {
-  "matcher": "",
-  "hooks": [
-    {
-      "type": "command",
-      "command": "bash ~/.claude-plugins/prompt-insight/hook.sh"
-    }
-  ]
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude-plugins/prompt-insight/hook.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
+
+他のフックがすでに存在する場合は `UserPromptSubmit` 配列に上記エントリが追加されていれば OK。
 
 ---
 
