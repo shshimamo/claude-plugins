@@ -1,6 +1,6 @@
 #!/bin/bash
 # Prompt Insight - UserPromptSubmit hook
-LOG_DIR="$HOME/.prompt-insight/logs"
+LOG_DIR="$HOME/.claude-plugins/prompt-insight/logs"
 mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/$(date +%Y-%m-%d).jsonl"
 
