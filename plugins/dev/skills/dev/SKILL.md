@@ -6,10 +6,10 @@ version: 1.0.0
 
 # Dev スキル
 
-保存先: `~/.dev/<project-name>/<feature-name>/`
+保存先: `~/.claude-plugins/dev/<project-name>/<feature-name>/`
 
 ```
-~/.dev/<project>/
+~/.claude-plugins/dev/<project>/
 └── <feature-name>/
     ├── investigation/
     │   ├── summary.md       # 全体サマリー・影響範囲
@@ -67,7 +67,7 @@ version: 1.0.0
 フィーチャー名: 仕様から短い名前を生成してユーザーに確認（例: `user-auth`, `order-refund`）。
 保存先ディレクトリ名になるため英数字・ハイフン推奨。
 
-プロジェクト名が確定したら `~/.repo-know/<project-name>/` の各ファイルを読み込む（存在しない場合はスキップ）。
+プロジェクト名が確定したら `~/.claude-plugins/repo-know/<project-name>/` の各ファイルを読み込む（存在しない場合はスキップ）。
 読み込んだ内容を既存コード調査・計画フェーズのコンテキストとして活用する。
 
 #### ステップ3: タスク種別の判断
@@ -136,7 +136,7 @@ version: 1.0.0
 
 #### ステップ4.5: repo-know への知識保存
 
-調査で得られたプロジェクト固有の知識を `~/.repo-know/<project-name>/` に保存する。
+調査で得られたプロジェクト固有の知識を `~/.claude-plugins/repo-know/<project-name>/` に保存する。
 
 調査結果を振り返り、以下の観点で知識を抽出する:
 - **tech**: 調査で判明した技術スタック・アーキテクチャ・実装パターン
@@ -271,7 +271,7 @@ sequenceDiagram
 
 #### ステップ1: 計画の読み込み
 
-プロジェクト名を取得後、`~/.dev/<project>/` 配下のフィーチャーディレクトリ一覧を表示してユーザーに選択させる。
+プロジェクト名を取得後、`~/.claude-plugins/dev/<project>/` 配下のフィーチャーディレクトリ一覧を表示してユーザーに選択させる。
 選択されたフィーチャーの `tasks.md`・`plan.md`・`investigation/` のファイルを読み込む。
 
 #### ステップ2: 進捗確認・アクション選択

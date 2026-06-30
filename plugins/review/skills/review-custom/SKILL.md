@@ -1,6 +1,6 @@
 ---
 name: review-custom
-description: カスタムルール付きコードレビュー。公式/reviewと同等のレビューに加え、~/.review/common.md と ~/.review/<project-name>.md の追加ルールを適用する。
+description: カスタムルール付きコードレビュー。公式/reviewと同等のレビューに加え、~/.claude-plugins/review/common.md と ~/.claude-plugins/review/<project-name>.md の追加ルールを適用する。
 version: 1.0.0
 ---
 
@@ -28,8 +28,8 @@ version: 1.0.0
 
 以下のファイルを読み込む:
 
-- `~/.review/common.md` — 全プロジェクト共通のレビュー観点（存在しない場合は `# Common Review Rules` の内容で新規作成）
-- `~/.review/<project-name>.md` — このプロジェクト固有のレビュー観点（存在しない場合は `# <project-name> Review Rules` の内容で新規作成）
+- `~/.claude-plugins/review/common.md` — 全プロジェクト共通のレビュー観点（存在しない場合は `# Common Review Rules` の内容で新規作成）
+- `~/.claude-plugins/review/<project-name>.md` — このプロジェクト固有のレビュー観点（存在しない場合は `# <project-name> Review Rules` の内容で新規作成）
 - `.claude/skill-evolve/review-patterns.md` — skill-evolve が週次自動生成するパターン（存在しない場合はスキップ）
 
 ### 5. 変更内容の取得
@@ -40,7 +40,7 @@ version: 1.0.0
 
 ### 6. repo-know の読み込み
 
-`~/.repo-know/<project-name>/` の各ファイルを読み込む。存在しない場合はスキップ。
+`~/.claude-plugins/repo-know/<project-name>/` の各ファイルを読み込む。存在しない場合はスキップ。
 読み込んだ内容をレビューのコンテキストとして活用する（既知の設計判断・技術スタック・ドメイン知識など）。
 
 ## レビュー実行
@@ -67,8 +67,8 @@ version: 1.0.0
 ## コードレビュー結果
 
 **対象**: <変更ファイル一覧>
-**プロジェクト固有ルール**: ~/.review/<project-name>.md
-**共通ルール**: ~/.review/common.md
+**プロジェクト固有ルール**: ~/.claude-plugins/review/<project-name>.md
+**共通ルール**: ~/.claude-plugins/review/common.md
 
 ---
 
@@ -95,7 +95,7 @@ version: 1.0.0
 
 ## repo-know の更新
 
-レビューを通じて判明した新しいプロジェクト知識を `~/.repo-know/<project-name>/` に保存する。
+レビューを通じて判明した新しいプロジェクト知識を `~/.claude-plugins/repo-know/<project-name>/` に保存する。
 
 レビュー結果を振り返り、以下の観点で知識を抽出する:
 - **tech**: 変更で判明した技術スタック・アーキテクチャの詳細

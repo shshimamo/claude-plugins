@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-~/.prompt-insight/logs/ の JSONL ファイルを読み込み、
+~/.claude-plugins/prompt-insight/logs/ の JSONL ファイルを読み込み、
 直近 N 日分のプロンプトログからパターンを抽出する。
 
 出力:
@@ -14,10 +14,10 @@ from datetime import datetime, timedelta
 # 引数で日数を指定可能（デフォルト: 30日）
 days = int(sys.argv[1]) if len(sys.argv) > 1 else 30
 
-logs_dir = Path.home() / '.prompt-insight' / 'logs'
+logs_dir = Path.home() / '.claude-plugins' / 'prompt-insight' / 'logs'
 
 if not logs_dir.exists():
-    print("~/.prompt-insight/logs/ not found. Run /prompt-insight setup first.")
+    print("~/.claude-plugins/prompt-insight/logs/ not found. Run /prompt-insight setup first.")
     exit(0)
 
 cutoff = datetime.now() - timedelta(days=days)

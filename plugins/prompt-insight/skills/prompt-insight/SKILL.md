@@ -6,8 +6,8 @@ version: 1.0.0
 
 # Prompt Insight スキル
 
-ログ保存先: `~/.prompt-insight/logs/YYYY-MM-DD.jsonl`
-フックスクリプト: `~/.prompt-insight/hook.sh`
+ログ保存先: `~/.claude-plugins/prompt-insight/logs/YYYY-MM-DD.jsonl`
+フックスクリプト: `~/.claude-plugins/prompt-insight/hook.sh`
 
 ## 呼び出しパターン
 
@@ -17,19 +17,19 @@ version: 1.0.0
 
 **1. ディレクトリ作成**
 
-Bash で `mkdir -p ~/.prompt-insight/logs` を実行する。
+Bash で `mkdir -p ~/.claude-plugins/prompt-insight/logs` を実行する。
 
 **2. フックスクリプトのコピー**
 
 スキルのベースディレクトリから2階層上がったプラグインルートに `hooks/prompt-logger.sh` がある。
-これを `~/.prompt-insight/hook.sh` にコピーして実行権限を付与する:
+これを `~/.claude-plugins/prompt-insight/hook.sh` にコピーして実行権限を付与する:
 
 ~~~bash
 # ベースディレクトリ（例: ~/.claude/plugins/cache/shshimamo-plugins/prompt-insight/<hash>/skills/prompt-insight）
 # プラグインルートは2階層上
 PLUGIN_ROOT="$(dirname "$(dirname "$BASE_DIR")")"
-cp "$PLUGIN_ROOT/hooks/prompt-logger.sh" ~/.prompt-insight/hook.sh
-chmod +x ~/.prompt-insight/hook.sh
+cp "$PLUGIN_ROOT/hooks/prompt-logger.sh" ~/.claude-plugins/prompt-insight/hook.sh
+chmod +x ~/.claude-plugins/prompt-insight/hook.sh
 ~~~
 
 `$BASE_DIR` はスキル呼び出し時に提供されるベースディレクトリのパスを使うこと。
@@ -47,7 +47,7 @@ chmod +x ~/.prompt-insight/hook.sh
   "hooks": [
     {
       "type": "command",
-      "command": "bash ~/.prompt-insight/hook.sh"
+      "command": "bash ~/.claude-plugins/prompt-insight/hook.sh"
     }
   ]
 }
@@ -56,14 +56,14 @@ chmod +x ~/.prompt-insight/hook.sh
 jq コマンド例（既存エントリを保持しつつ追加）:
 
 ~~~bash
-jq '.hooks.UserPromptSubmit += [{"matcher": "", "hooks": [{"type": "command", "command": "bash ~/.prompt-insight/hook.sh"}]}]' \
+jq '.hooks.UserPromptSubmit += [{"matcher": "", "hooks": [{"type": "command", "command": "bash ~/.claude-plugins/prompt-insight/hook.sh"}]}]' \
   ~/.claude/settings.json > /tmp/settings_tmp.json && mv /tmp/settings_tmp.json ~/.claude/settings.json
 ~~~
 
 settings.json が存在しない場合:
 
 ~~~bash
-echo '{"hooks":{"UserPromptSubmit":[{"matcher":"","hooks":[{"type":"command","command":"bash ~/.prompt-insight/hook.sh"}]}]}}' \
+echo '{"hooks":{"UserPromptSubmit":[{"matcher":"","hooks":[{"type":"command","command":"bash ~/.claude-plugins/prompt-insight/hook.sh"}]}]}}' \
   > ~/.claude/settings.json
 ~~~
 
@@ -80,7 +80,7 @@ echo '{"hooks":{"UserPromptSubmit":[{"matcher":"","hooks":[{"type":"command","co
 Bash で以下を実行してログを取得する:
 
 ~~~bash
-ls ~/.prompt-insight/logs/*.jsonl 2>/dev/null
+ls ~/.claude-plugins/prompt-insight/logs/*.jsonl 2>/dev/null
 ~~~
 
 ファイルが存在しない場合は以下を伝えて終了:
@@ -89,7 +89,7 @@ ls ~/.prompt-insight/logs/*.jsonl 2>/dev/null
 存在する場合は全ファイルを結合して読み込む:
 
 ~~~bash
-cat ~/.prompt-insight/logs/*.jsonl
+cat ~/.claude-plugins/prompt-insight/logs/*.jsonl
 ~~~
 
 **ステップ2: 統計情報の把握**

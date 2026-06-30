@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-~/.investigate/code/ の調査ファイルと ~/.repo-know/ のプロジェクト知識を分析し、
+~/.claude-plugins/investigate/code/ の調査ファイルと ~/.claude-plugins/repo-know/ のプロジェクト知識を分析し、
 investigate_code スキルの改善データを収集する。
 
 出力:
@@ -13,16 +13,16 @@ skill-evolve はこのデータをもとに
 import json
 from pathlib import Path
 
-investigate_root = Path.home() / '.investigate' / 'code'
-repo_know_root = Path.home() / '.repo-know'
+investigate_root = Path.home() / '.claude-plugins' / 'investigate' / 'code'
+repo_know_root = Path.home() / '.claude-plugins' / 'repo-know'
 
 if not investigate_root.exists() and not repo_know_root.exists():
-    print("~/.investigate/code/ and ~/.repo-know/ not found. No data to analyze.")
+    print("~/.claude-plugins/investigate/code/ and ~/.claude-plugins/repo-know/ not found. No data to analyze.")
     exit(0)
 
 projects = {}
 
-# ~/.investigate/code/ から調査データを収集
+# ~/.claude-plugins/investigate/code/ から調査データを収集
 if investigate_root.exists():
     for project_dir in sorted(investigate_root.iterdir()):
         if not project_dir.is_dir():
@@ -43,7 +43,7 @@ if investigate_root.exists():
                 'summary': summary_path.read_text(encoding='utf-8'),
             })
 
-# ~/.repo-know/ からプロジェクト知識を収集
+# ~/.claude-plugins/repo-know/ からプロジェクト知識を収集
 if repo_know_root.exists():
     for project_dir in sorted(repo_know_root.iterdir()):
         if not project_dir.is_dir():

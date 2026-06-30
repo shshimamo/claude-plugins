@@ -6,11 +6,11 @@ version: 1.0.0
 
 # Repo Know スキル
 
-保存先: `~/.repo-know/<project-name>/`
+保存先: `~/.claude-plugins/repo-know/<project-name>/`
 知識ファイル:
-- `~/.repo-know/<project-name>/tech.md` — 技術スタック・アーキテクチャ・ライブラリ
-- `~/.repo-know/<project-name>/domain.md` — ドメイン知識・用語・ビジネスルール
-- `~/.repo-know/<project-name>/decisions.md` — 設計判断・採用した方針とその理由
+- `~/.claude-plugins/repo-know/<project-name>/tech.md` — 技術スタック・アーキテクチャ・ライブラリ
+- `~/.claude-plugins/repo-know/<project-name>/domain.md` — ドメイン知識・用語・ビジネスルール
+- `~/.claude-plugins/repo-know/<project-name>/decisions.md` — 設計判断・採用した方針とその理由
 
 ## 知識ファイルのフォーマット
 
@@ -35,7 +35,7 @@ version: 1.0.0
 
 **ステップ2: 既存知識の読み込み**
 
-`~/.repo-know/<project-name>/` の各ファイルを読み込む。存在しない場合は空として扱う。
+`~/.claude-plugins/repo-know/<project-name>/` の各ファイルを読み込む。存在しない場合は空として扱う。
 
 **ステップ3: 会話からの知識抽出**
 
@@ -80,7 +80,7 @@ version: 1.0.0
 
 **ステップ6: ファイルへの追記**
 
-`~/.repo-know/<project-name>/` ディレクトリを作成し、選択された項目を該当ファイルに追記する。
+`~/.claude-plugins/repo-know/<project-name>/` ディレクトリを作成し、選択された項目を該当ファイルに追記する。
 
 既存の箇条書きリストの末尾に追記する（日付セクションは作らない）。
 追記後に保存内容を表示して完了を報告する。
@@ -95,7 +95,7 @@ version: 1.0.0
 
 **ステップ2: 知識ファイルの読み込み・表示**
 
-`~/.repo-know/<project-name>/` の全ファイルを読み込んで表示する。
+`~/.claude-plugins/repo-know/<project-name>/` の全ファイルを読み込んで表示する。
 
 ファイルが存在しない・空の場合は「まだ知識が蓄積されていません。`/repo-know` で保存してください。」と伝える。
 

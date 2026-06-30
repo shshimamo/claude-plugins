@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Case 3: ~/.investigate/bug/ と ~/.dev/ を横断して
+Case 3: ~/.claude-plugins/investigate/bug/ と ~/.claude-plugins/dev/ を横断して
 「各スキルで何が足りなかったか」のパターンを集計する
 
 複数スキルのデータを合わせて分析することで、
@@ -12,8 +12,8 @@ Case 3: ~/.investigate/bug/ と ~/.dev/ を横断して
 import json
 from pathlib import Path
 
-investigate_root = Path.home() / '.investigate' / 'bug'
-dev_root = Path.home() / '.dev'
+investigate_root = Path.home() / '.claude-plugins' / 'investigate' / 'bug'
+dev_root = Path.home() / '.claude-plugins' / 'dev'
 
 patterns = {
     'investigate': {'unresolved_count': 0, 'common_unknowns': []},
@@ -44,7 +44,7 @@ if investigate_root.exists():
     ]
 
 # --- dev: 保留・ブロック状態のまま残っているタスクを集計 ---
-# dev スキルが生成する ~/.dev/<project>/tasks.md を全件スキャン
+# dev スキルが生成する ~/.claude-plugins/dev/<project>/tasks.md を全件スキャン
 if dev_root.exists():
     stalled = []
     for tasks_path in dev_root.glob('*/tasks.md'):

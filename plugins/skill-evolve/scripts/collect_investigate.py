@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Case 2: ~/.investigate/bug/ の調査ファイルを分析し、
+Case 2: ~/.claude-plugins/investigate/bug/ の調査ファイルを分析し、
 繰り返し「未解決」になっている不明点パターンを抽出する
 
 investigate_bug スキルが生成した summary.md を読み取り、
@@ -12,19 +12,19 @@ investigate_bug スキルが生成した summary.md を読み取り、
 import json
 from pathlib import Path
 
-investigate_root = Path.home() / '.investigate' / 'bug'
+investigate_root = Path.home() / '.claude-plugins' / 'investigate' / 'bug'
 
 if not investigate_root.exists():
-    print("~/.investigate/bug/ not found. No data to analyze.")
+    print("~/.claude-plugins/investigate/bug/ not found. No data to analyze.")
     exit(0)
 
 unresolved = []
 
-# ~/.investigate/bug/<project>/<investigation-name>/investigation/summary.md を全件スキャン
+# ~/.claude-plugins/investigate/bug/<project>/<investigation-name>/investigation/summary.md を全件スキャン
 for summary_path in investigate_root.glob('*/*/investigation/summary.md'):
     content = summary_path.read_text(encoding='utf-8')
 
-    # パスの構造: ~/.investigate/bug/<project>/<investigation>/investigation/summary.md
+    # パスの構造: ~/.claude-plugins/investigate/bug/<project>/<investigation>/investigation/summary.md
     project = summary_path.parts[-4]
     investigation = summary_path.parts[-3]
 

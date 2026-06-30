@@ -6,10 +6,10 @@ version: 1.0.0
 
 # Investigate Bug スキル
 
-保存先: `~/.investigate/bug/<project-name>/<investigation-name>/`
+保存先: `~/.claude-plugins/investigate/bug/<project-name>/<investigation-name>/`
 
 ```
-~/.investigate/bug/<project>/
+~/.claude-plugins/investigate/bug/<project>/
 └── <investigation-name>/
     ├── investigation/
     │   └── summary.md        # 調査サマリー・関連ファイル・リスク
@@ -76,7 +76,7 @@ version: 1.0.0
 
 調査名: バグの内容から短い名前を生成してユーザーに確認（例: `nil-pointer-user-auth`, `timeout-payment-api`）。英数字・ハイフン推奨。
 
-プロジェクト名が確定したら `~/.repo-know/<project-name>/` の各ファイルを読み込む（存在しない場合はスキップ）。
+プロジェクト名が確定したら `~/.claude-plugins/repo-know/<project-name>/` の各ファイルを読み込む（存在しない場合はスキップ）。
 読み込んだ内容を調査のコンテキストとして活用する（既知のアーキテクチャ・ドメイン知識・設計判断など）。
 
 ## ステップ3: 並列調査
@@ -181,7 +181,7 @@ Agent ツールで以下を並列調査する:
 
 ## ステップ6: repo-know の更新
 
-調査・修正提案を通じて判明した新しいプロジェクト知識を `~/.repo-know/<project-name>/` に保存する。
+調査・修正提案を通じて判明した新しいプロジェクト知識を `~/.claude-plugins/repo-know/<project-name>/` に保存する。
 
 調査結果を振り返り、以下の観点で知識を抽出する:
 - **tech**: バグ調査で判明した技術スタック・アーキテクチャの詳細

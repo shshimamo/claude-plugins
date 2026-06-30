@@ -6,10 +6,10 @@ version: 1.0.0
 
 # Investigate Code スキル
 
-保存先: `~/.investigate/code/<project-name>/<investigation-name>/`
+保存先: `~/.claude-plugins/investigate/code/<project-name>/<investigation-name>/`
 
 ```
-~/.investigate/code/<project>/
+~/.claude-plugins/investigate/code/<project>/
 ├── domain-knowledge.md           # プロジェクト固有のドメイン知識（自動更新）
 └── <investigation-name>/
     ├── investigation/
@@ -44,8 +44,8 @@ version: 1.0.0
 
 プロジェクト名が確定したら以下を読み込む（存在しない場合はスキップ）:
 
-- `~/.skill-evolve/skill-extensions/<project>/investigate_code.local.md`（調査の優先順位・注意点）
-- `~/.repo-know/<project>/` の各ファイル（アーキテクチャ・ドメイン知識・設計判断）
+- `~/.claude-plugins/skill-evolve/skill-extensions/<project>/investigate_code.local.md`（調査の優先順位・注意点）
+- `~/.claude-plugins/repo-know/<project>/` の各ファイル（アーキテクチャ・ドメイン知識・設計判断）
 
 読み込んだ内容を以降のステップで追加コンテキストとして活用する。
 
@@ -188,7 +188,7 @@ graph TD
 
 ## ステップ6: repo-know への知識保存
 
-今回の調査で得られたプロジェクト固有の知識を `~/.repo-know/<project-name>/` に保存する。
+今回の調査で得られたプロジェクト固有の知識を `~/.claude-plugins/repo-know/<project-name>/` に保存する。
 
 調査結果を振り返り、以下の観点で知識を抽出する:
 - **tech**: アーキテクチャ・レイヤー構成・ファイル構造（例: Controller → Service → Repository の対応）

@@ -1,6 +1,6 @@
 ---
 name: review-update
-description: /review-custom のレビュー結果を受けて、~/.review/common.md や ~/.review/<project-name>.md にルールを追記する。レビュー後に実行する。
+description: /review-custom のレビュー結果を受けて、~/.claude-plugins/review/common.md や ~/.claude-plugins/review/<project-name>.md にルールを追記する。レビュー後に実行する。
 version: 1.0.0
 ---
 
@@ -19,8 +19,8 @@ version: 1.0.0
 
 以下の2ファイルを読み込む:
 
-- `~/.review/common.md`
-- `~/.review/<project-name>.md`
+- `~/.claude-plugins/review/common.md`
+- `~/.claude-plugins/review/<project-name>.md`
 
 存在しない場合は新規作成する:
 
@@ -60,11 +60,11 @@ version: 1.0.0
 ```
 ## ルール追加の提案
 
-### ~/.review/common.md への追加候補
+### ~/.claude-plugins/review/common.md への追加候補
 1. <ルール内容>
 2. <ルール内容>
 
-### ~/.review/<project-name>.md への追加候補
+### ~/.claude-plugins/review/<project-name>.md への追加候補
 1. <ルール内容>
 2. <ルール内容>
 
