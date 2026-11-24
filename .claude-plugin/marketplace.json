@@ -45,6 +45,11 @@
       "name": "skill-evolve",
       "description": "調査ログや開発ログを集計して investigate_bug・dev スキルを自動改善する。/skill-evolve コマンドで任意のタイミングに実行。",
       "source": "./plugins/skill-evolve"
+    },
+    {
+      "name": "figure",
+      "description": "会話の説明やPRの概要を開発の図にする。Mermaid入りmdをmoで開くか、Artifact（HTML）で表示する。",
+      "source": "./plugins/figure"
     }
   ]
 }

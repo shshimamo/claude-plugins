@@ -1,0 +1,7 @@
+{
+  "name": "figure",
+  "description": "会話の説明やPRの概要を開発の図にする。Mermaid入りmdをmoで開くか、Artifact（HTML）で表示する。",
+  "author": {
+    "name": "shshimamo"
+  }
+}

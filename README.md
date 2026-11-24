@@ -111,6 +111,26 @@ Claude Code plugins by shshimamo
 
 ---
 
+### figure
+
+会話の説明やPRの概要を開発の図にする。Mermaid入りのmdを [mo](https://github.com/k1LoW/mo) で開くか、Artifact（HTML）で表示する。
+
+```
+/plugin install figure@shshimamo-plugins
+```
+
+| コマンド | 説明 |
+|---------|------|
+| `/figure [対象]` | 直前の説明を図にして mo で開く |
+| `/figure pr` | ブランチの差分から図付きのPR概要を作る |
+| `/figure artifact [対象]` | Artifact（HTML + SVG）で図を表示する |
+
+保存先: `~/.claude-plugins/figure/<project-name>/`
+
+図の作法は [figure-docs](https://github.com/u-ichi/agent-plugins/tree/main/plugins/figure-docs)（MIT License）を元にしている。
+
+---
+
 ### prompt-insight
 
 プロンプトログを自動収集・分析し、繰り返しパターンをスキル化・CLAUDE.md化する提案を行う。
