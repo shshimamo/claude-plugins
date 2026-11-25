@@ -113,7 +113,7 @@ Claude Code plugins by shshimamo
 
 ### figure
 
-会話の説明やPRの概要を開発の図にする。Mermaid入りのmdを [mo](https://github.com/k1LoW/mo) で開くか、Artifact（HTML）で表示する。
+会話の説明やPRの概要を開発の図にする。標準は Artifact（HTML）で表示し、Mermaid入りのmdを [mo](https://github.com/k1LoW/mo) で開くこともできる。
 
 ```
 /plugin install figure@shshimamo-plugins
@@ -121,9 +121,9 @@ Claude Code plugins by shshimamo
 
 | コマンド | 説明 |
 |---------|------|
-| `/figure [対象]` | 直前の説明を図にして mo で開く |
-| `/figure pr` | ブランチの差分から図付きのPR概要を作る |
-| `/figure artifact [対象]` | Artifact（HTML + SVG）で図を表示する |
+| `/figure [対象]` | 直前の説明を図にして Artifact（HTML + SVG）で表示する |
+| `/figure md [対象]` | Mermaid入りのmdにして mo で開く |
+| `/figure pr` | ブランチの差分から図付きのPR概要を作る（md） |
 
 保存先: `~/.claude-plugins/figure/<project-name>/`
 

@@ -1,7 +1,7 @@
 ---
 name: figure
-description: 会話の説明やPRの概要を開発の図にする。「/figure」で直前の説明を図にしてmoで開く、「/figure pr」でブランチの差分から図付きのPR概要を作る、「/figure artifact」でArtifact（HTML）として表示する。ユーザーが「図にして」「図で見せて」と頼んだときに使う。頼まれていない説明では使わない。
-version: 1.0.0
+description: 会話の説明やPRの概要を開発の図にする。「/figure」で直前の説明を図にしてArtifact（HTML）で表示する、「/figure md」でMermaid入りmdにしてmoで開く、「/figure pr」でブランチの差分から図付きのPR概要を作る。ユーザーが「図にして」「図で見せて」と頼んだときに使う。頼まれていない説明では使わない。
+version: 1.1.0
 ---
 
 # Figure スキル
@@ -18,7 +18,19 @@ version: 1.0.0
 
 ## 呼び出しパターン
 
-### `/figure [対象]`
+### `/figure [対象]`（標準: Artifact）
+
+1. 対象を決める。指定がなければ直前の説明を対象にする
+2. artifact-design スキルを読み込む（Artifact を書く前に必須）
+3. 下の「図の作り方」に沿って、SVG で図を描いた HTML を保存先に書く
+4. Artifact ツールで公開する。修正時は同じファイルパスで再公開し、同じ URL を保つ
+5. 返信は結論1〜2行と Artifact の URL だけ
+
+論点が2つ以上あるときは、ボタンで論点を切り替え、選んだ論点の要素だけ枠を太くしてほかを薄くする（配置と色は変えない）。
+
+### `/figure md [対象]`
+
+ローカルで手早く見たいとき、md として残したいときに使う。
 
 1. 対象を決める。指定がなければ直前の説明を対象にする
 2. 下の「図の作り方」に沿って、Mermaid 入りの md を保存先に書く
@@ -37,16 +49,7 @@ version: 1.0.0
 3. `mo <ファイル> --target <project>` で開く
 4. PR の本文に反映するかをユーザーに確認する。承認されたときだけ `gh pr create` / `gh pr edit --body-file` を使う
 
-### `/figure artifact [対象]`
-
-Mermaid では表しにくい図、論点を切り替えて見せたい図、人に共有したい図に使う。
-
-1. artifact-design スキルを読み込む（Artifact を書く前に必須）
-2. 下の「図の作り方」に沿って、SVG で図を描いた HTML を保存先に書く
-3. Artifact ツールで公開する。修正時は同じファイルパスで再公開し、同じ URL を保つ
-4. 返信は結論1〜2行と Artifact の URL だけ
-
-論点が2つ以上あるときは、ボタンで論点を切り替え、選んだ論点の要素だけ枠を太くしてほかを薄くする（配置と色は変えない）。
+PR の本文に貼るため、Artifact ではなく md で作る。
 
 ---
 
@@ -83,7 +86,7 @@ Mermaid では表しにくい図、論点を切り替えて見せたい図、人
 
 ### どの図にも守ること
 
-- **タイトル**: Mermaid は先頭の `---` で囲んだ frontmatter の `title:` に書く。変更の前後に関わる図は「今の〜」「直した後の〜」と分かるようにする
+- **タイトル**: Artifact は図のすぐ上の見出しに、Mermaid は先頭の `---` で囲んだ frontmatter の `title:` に書く。変更の前後に関わる図は「今の〜」「直した後の〜」と分かるようにする
 - **実物と名前の一致**: 要素の数・矢印・名前は実物（コード・画面・用語）に合わせる。作業中の呼び名や PR 番号を出さない
 - **凡例**: 線の種類や色に意味を持たせたら凡例を置く
 - **矢印の文字**: 1本の矢印に付ける文字は1か所にまとめる。渡すもの（呼び出し、データ名など）を書く
@@ -118,4 +121,4 @@ Mermaid では表しにくい図、論点を切り替えて見せたい図、人
 
 ---
 
-図の作法は [figure-docs](https://github.com/u-ichi/agent-plugins/tree/main/plugins/figure-docs)（MIT License, Copyright (c) 2026 u-ichi）を元に、開発の図・Mermaid・mo 向けに書き直したもの。ライセンスは `LICENSES/figure-docs.txt` を参照。
+図の作法は [figure-docs](https://github.com/u-ichi/agent-plugins/tree/main/plugins/figure-docs)（MIT License, Copyright (c) 2026 u-ichi）を元に、開発の図・Artifact・Mermaid・mo 向けに書き直したもの。ライセンスは `LICENSES/figure-docs.txt` を参照。
